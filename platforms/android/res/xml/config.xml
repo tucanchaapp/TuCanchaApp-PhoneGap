@@ -6,12 +6,12 @@
         <param name="onload" value="true" />
     </feature>
     <allow-intent href="market:*" />
-    <name>TuCanchaApp</name>
+    <name>TuCancha App</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        soccer fild reservation app
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        TuCancha App Team
     </author>
     <content src="index.html" />
     <access origin="*" />
