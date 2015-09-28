@@ -1,0 +1,25 @@
+<div id="div-forms">
+                
+ <!-- Begin | Register Form -->
+                    <form ng-controller="setUpAccountController" id="register-form">
+            		    <div class="modal-body">
+		    				<div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                <span id="text-register-msg">Creacion de cuenta.</span>
+                            </div>
+                            <input ng-model="register_phone" id="register_phone" class="form-control" type="text" placeholder="Celular" required>
+                            <input ng-model="register_email" id="register_email" class="form-control" type="text" placeholder="Usuario (Correo)" required>                           
+                            <input ng-model="register_password" id="register_password" class="form-control" type="password" placeholder="contraseña" required>
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button ng-click="signUp()" type="submit" class="btn btn-primary btn-lg btn-block">Registrar</button>
+                            </div>
+                            <div>
+                                <button ng-click="go('/login')" id="register_login_btn" type="button" class="btn btn-link">Acceder</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Register Form -->
+</div>
