@@ -28,13 +28,14 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+       <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
         <title>TuCancha App</title>
     </head>
     <body>
@@ -44,14 +45,18 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/moment.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>       
         <script type="text/javascript" src="js/angular-route.min.js"></script>
         <script type="text/javascript" src="js/parse-1.6.2.min.js"></script>
         <script type="text/javascript" src="app/app.module.js"></script>
         <script type="text/javascript" src="app/app.routes.js"></script>
         <script type="text/javascript" src="app/appController.js"></script>
         <script type="text/javascript" src="app/setUpAccount/setUpAccountController.js"></script>
+        <script type="text/javascript" src="app/login/loginController.js"></script>
+        <script type="text/javascript" src="app/reservation/reservationLandingController.js"></script>
         
     </body>
 </html>

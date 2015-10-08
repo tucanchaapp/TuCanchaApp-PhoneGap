@@ -8,6 +8,9 @@ function setUpAccountController($scope){
         user.set("username", $scope.register_email);
         user.set("password", $scope.register_password);
         user.set("email", $scope.register_email);
+        user.set("name", $scope.register_name);
+        user.set("business", "NO");
+         
 
         // other fields can be set just like with Parse.Object
         user.set("phone", $scope.register_phone);
@@ -15,6 +18,7 @@ function setUpAccountController($scope){
         user.signUp(null, {
           success: function(user) {
             alert("El usuario "+$scope.register_email+" fue creado exitosamente.")
+            
           },
           error: function(user, error) {
             // Show the error message somewhere and let the user try again.

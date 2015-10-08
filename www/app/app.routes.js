@@ -4,7 +4,8 @@ angular.module('tuCanchaApp').config(function($routeProvider) {
 
         // route for the about page
         .when('/', {
-            templateUrl : 'app/login/login.html'
+            templateUrl : 'app/login/login.html',
+            controller: 'loginController'
         })
     
         .when('/setUpAccount', {
@@ -12,7 +13,12 @@ angular.module('tuCanchaApp').config(function($routeProvider) {
         })
     
         .when('/login', {
-            templateUrl : 'app/login/login.html'        
+            templateUrl : 'app/login/login.html'       
+        })
+    
+        .when('/reservationLanding', {
+            templateUrl : 'app/reservation/reservationLanding.html',
+            controller  : 'reservationLandingController'
         })
 
         .otherwise({

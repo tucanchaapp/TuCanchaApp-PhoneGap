@@ -10,10 +10,10 @@
 		                <div class="modal-body">
 				    		<div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-login-msg">Escribe ty correo y contraseña.</span>
+                                <span id="text-login-msg">Escribe tu correo y contraseña.</span>
                             </div>
-				    		<input id="login_username" class="form-control" type="text" placeholder="Usuario (correo)" required>
-				    		<input id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
+				    		<input ng-model="login_username" id="login_username" class="form-control" type="text" placeholder="Usuario (correo)" required>
+				    		<input ng-model="login_password" id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox"> Recordarme
@@ -22,7 +22,7 @@
         		    	</div>
 				        <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar sesion</button>
+                                <button ng-click="logIn()" type="submit" class="btn btn-primary btn-lg btn-block">Iniciar sesion</button>
                             </div>
 				    	    <div>
                                 <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>             
