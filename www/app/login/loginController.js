@@ -15,8 +15,7 @@ function loginController($scope,$location,$rootScope){
               });
           },
           error: function(user, error) {
-            alert("Su usuario y contraseña no coinciden");
-              console.log(error);
+              alert("Error: " + error.code + " " + error.message);
           }
              
         })
