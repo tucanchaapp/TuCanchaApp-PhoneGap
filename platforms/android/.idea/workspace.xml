@@ -27,7 +27,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/tuCanchaApp/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0163044">
+            <state vertical-scroll-proportion="0.8862559">
               <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
               <folding />
             </state>
@@ -957,7 +957,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Users\velocity\Documents\development\TuCanchaApp-PhoneGap\platforms\android" value="5780255978414" />
+        <entry key="C:\Users\velocity\Documents\development\TuCanchaApp-PhoneGap\platforms\android" value="5780268356213" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1540,7 +1540,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/tuCanchaApp/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0163044">
+        <state vertical-scroll-proportion="0.8862559">
           <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
           <folding />
         </state>
