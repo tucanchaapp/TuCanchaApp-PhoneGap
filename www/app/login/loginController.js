@@ -10,15 +10,13 @@ function loginController($scope,$location,$rootScope){
              
           success: function(user) {
               $rootScope.$apply(function() {
-                $location.path('/reservationLanding');
-                //console.log($location.path());
+                $location.path('/reservationLanding');            
               });
           },
-          error: function(user, error) {
-              alert("Error: " + error.code + " " + error.message);
+          error: function(error) {
+              alert("Code: " +error.code +" Message: " + error.message);              
           }
              
-        })
-     }
+        })     }
           
 }
