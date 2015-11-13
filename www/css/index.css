@@ -112,3 +112,13 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.reservation_table {
+  border: 1px solid #666;   
+    width: 100%;
+}
+.reservation_th {
+  background: #f8f8f8; 
+  font-weight: bold;    
+    padding: 2px;
+}

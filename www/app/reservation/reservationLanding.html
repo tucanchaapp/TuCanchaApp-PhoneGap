@@ -10,23 +10,31 @@
       </div>
 				       
     <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
+            <div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker1').datetimepicker();
-                });
-            </script>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minView: 'hour' }"/>
+          </ul>
         </div>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button ng-click="checkAvailableFilds()" type="button" class="btn btn-primary btn-lg btn-block">Buscar</button>
+        </div>
+        <br>
+        <table class="reservation_table">
+            <tr>
+                <th class="reservation_th">Empresa</th>
+                <th class="reservation_th">Cancha</th>
+            </tr>
+            <tr ng-click="makeAReservation(field)" ng-repeat="field in fields track by $index">                
+                <td>{{field.company}}</td>
+                <td>{{field.name}}</td>
+            </tr>
+        </table>
     </div>
                                        
 </div>
