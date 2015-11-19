@@ -12,7 +12,11 @@
     <div class="container">
         <div class="dropdown">
           <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
-            <div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <div class="input-group">
+                <input type="text" class="form-control" value="{{ data.dateDropDownInput | date:'dd-MM-yyyy hh:mm a' }}" readonly>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
             </div>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -20,6 +24,7 @@
           </ul>
         </div>
     </div>
+    <span us-spinner spinner-key="spinner-1"></span>
     <div class="modal-footer">
         <div>
             <button ng-click="checkAvailableFilds()" type="button" class="btn btn-primary btn-lg btn-block">Buscar</button>

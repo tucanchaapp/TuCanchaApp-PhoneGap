@@ -1,56 +1,68 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory'];
+reservationLandingController.$inject = ['$scope','reservationFactory','appFactory','usSpinnerService'];
    
 
-function reservationLandingController($scope,reservationFactory){
+function reservationLandingController($scope,reservationFactory,appFactory,usSpinnerService){
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
    
     
-    $scope.checkAvailableFilds = function () {        
-        
-        reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
-        
-            var reservationsIds = []
-            for (var i = 0; i < reservations.length; i++) {
-                console.log(JSON.stringify(reservations[i]))                    
-                reservationsIds.push(reservations[i].get('fieldId').id)                                
-            }
-            
-            
-            reservationFactory.getFields().then(function(fields){
-                json_fields = [];
-        
-                for (var i = 0; i < fields.length; i++) {
-                    var field = fields[i];
+    $scope.checkAvailableFilds = function () {
+        usSpinnerService.spin('spinner-1');
+        navigator.geolocation.getCurrentPosition(function(position) {
                     
-                    if($.inArray(field.id,reservationsIds) < 0){
-                        var json_field = {}
+            appFactory.getLocationInfo(position.coords.latitude,position.coords.longitude).then(function(locationData){
+                                                                                                                                                                                                                                        reservationFactory.getReservations($scope.data.dateDropDownInput.getTime(),locationData.address.city).then(function(reservations){
 
-                        json_field ["name"]    = field.get('name')   
-                        json_field ["company"] = field.get('venueId').get('Name')                                        
-                        json_field ["id"]      = field.id
-                        
-                        json_fields.push(json_field);
-                    }
+                        var reservationsIds = []
+                        for (var i = 0; i < reservations.length; i++) {
+                           
+                            reservationsIds.push(reservations[i].get('fieldId').id)                                
+                        }
 
-                }
 
-                $scope.fields=json_fields;
+                        reservationFactory.getFields().then(function(fields){
+                            json_fields = [];
+
+                            for (var i = 0; i < fields.length; i++) {
+                                var field = fields[i];
+
+                                if($.inArray(field.id,reservationsIds) < 0){
+                                    var json_field = {}
+
+                                    json_field ["name"]    = field.get('name')   
+                                    json_field ["company"] = field.get('venueId').get('Name')                                        
+                                    json_field ["id"]      = field.id
+
+                                    json_fields.push(json_field);
+                                }
+
+                            }
+
+                            $scope.fields=json_fields;
+
+                        })         
+
+                })
+                    
+            });
+                
+                
         
-            })         
-        
-        })
-
-              
+                
+        },function onError(error) {
+                alert('code: '    + error.code    + '\n' +
+                      'message: ' + error.message + '\n');
+        });
+        usSpinnerService.stop('spinner-1');      
     }
     
     
     $scope.makeAReservation = function (field) {
         
-        if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company)+ '?') { 
+        if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company + '?')) { 
 
             var Reservation = Parse.Object.extend("Reservation");
             var reservation = new Reservation();
