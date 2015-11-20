@@ -10,53 +10,57 @@ function reservationLandingController($scope,reservationFactory,appFactory,usSpi
    
     
     $scope.checkAvailableFilds = function () {
-        usSpinnerService.spin('spinner-1');
-        navigator.geolocation.getCurrentPosition(function(position) {
-                    
-            appFactory.getLocationInfo(position.coords.latitude,position.coords.longitude).then(function(locationData){
-                                                                                                                                                                                                                                        reservationFactory.getReservations($scope.data.dateDropDownInput.getTime(),locationData.address.city).then(function(reservations){
+        if($scope.data != undefined){
+            usSpinnerService.spin('spinner-1');
+            navigator.geolocation.getCurrentPosition(function(position) {
 
-                        var reservationsIds = []
-                        for (var i = 0; i < reservations.length; i++) {
-                           
-                            reservationsIds.push(reservations[i].get('fieldId').id)                                
-                        }
+                appFactory.getLocationInfo(position.coords.latitude,position.coords.longitude).then(function(locationData){
+                                                                                                                                                                                                                                            reservationFactory.getReservations($scope.data.dateDropDownInput.getTime(),locationData.address.city).then(function(reservations){
 
+                            var reservationsIds = []
+                            for (var i = 0; i < reservations.length; i++) {
 
-                        reservationFactory.getFields().then(function(fields){
-                            json_fields = [];
-
-                            for (var i = 0; i < fields.length; i++) {
-                                var field = fields[i];
-
-                                if($.inArray(field.id,reservationsIds) < 0){
-                                    var json_field = {}
-
-                                    json_field ["name"]    = field.get('name')   
-                                    json_field ["company"] = field.get('venueId').get('Name')                                        
-                                    json_field ["id"]      = field.id
-
-                                    json_fields.push(json_field);
-                                }
-
+                                reservationsIds.push(reservations[i].get('fieldId').id)                                
                             }
 
-                            $scope.fields=json_fields;
 
-                        })         
+                            reservationFactory.getFields().then(function(fields){
+                                json_fields = [];
 
-                })
-                    
+                                for (var i = 0; i < fields.length; i++) {
+                                    var field = fields[i];
+
+                                    if($.inArray(field.id,reservationsIds) < 0){
+                                        var json_field = {}
+
+                                        json_field ["name"]    = field.get('name')   
+                                        json_field ["company"] = field.get('venueId').get('Name')                                        
+                                        json_field ["id"]      = field.id
+
+                                        json_fields.push(json_field);
+                                    }
+
+                                }
+
+                                $scope.fields=json_fields;
+
+                            })         
+
+                    })
+
+                });
+
+
+
+
+            },function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
             });
-                
-                
-        
-                
-        },function onError(error) {
-                alert('code: '    + error.code    + '\n' +
-                      'message: ' + error.message + '\n');
-        });
-        usSpinnerService.stop('spinner-1');      
+            usSpinnerService.stop('spinner-1');      
+        }else{
+            alert("")
+        }
     }
     
     
