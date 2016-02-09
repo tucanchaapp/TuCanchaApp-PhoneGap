@@ -1,9 +1,9 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory','appFactory','usSpinnerService'];
+reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService'];
    
 
-function reservationLandingController($scope,reservationFactory,appFactory,usSpinnerService){
+function reservationLandingController($scope,reservationFactory,usSpinnerService){
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
@@ -13,24 +13,24 @@ function reservationLandingController($scope,reservationFactory,appFactory,usSpi
         if($scope.data != undefined){
             usSpinnerService.spin('spinner-1');
             navigator.geolocation.getCurrentPosition(function(position) {
+                
 
-                appFactory.getLocationInfo(position.coords.latitude,position.coords.longitude).then(function(locationData){
-                                                                                                                                                                                                                                            reservationFactory.getReservations($scope.data.dateDropDownInput.getTime(),locationData.address.city).then(function(reservations){
+                                                                                                                                                                                                                                         reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
 
                             var reservationsIds = []
                             for (var i = 0; i < reservations.length; i++) {
-
                                 reservationsIds.push(reservations[i].get('fieldId').id)                                
                             }
 
-
                             reservationFactory.getFields().then(function(fields){
                                 json_fields = [];
-
+                                             
                                 for (var i = 0; i < fields.length; i++) {
                                     var field = fields[i];
-
-                                    if($.inArray(field.id,reservationsIds) < 0){
+                                    var fieldGeoPoint = new Parse.GeoPoint(field.get('venueId').get('Location'));                       
+                                    var fieldDistance = distance(position.coords.latitude, position.coords.longitude, fieldGeoPoint.latitude, fieldGeoPoint.longitude, "K");
+                                    
+                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 16){
                                         var json_field = {}
 
                                         json_field ["name"]    = field.get('name')   
@@ -47,22 +47,35 @@ function reservationLandingController($scope,reservationFactory,appFactory,usSpi
                             })         
 
                     })
-
-                });
-
-
-
+             
 
             },function onError(error) {
+                    if (error.code == 3){
+                        alert("El tiempo de expera ha expirado \n si el prolema persiste reinicie su equipo")
+                    }
                     alert('code: '    + error.code    + '\n' +
                           'message: ' + error.message + '\n');
-            });
+            }, {timeout:15000, enableHighAccuracy: true});
             usSpinnerService.stop('spinner-1');      
         }else{
-            alert("")
+            alert("Por favor seleccione una fecha")
         }
     }
     
+    
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit=="K") { dist = dist * 1.609344 }
+        if (unit=="N") { dist = dist * 0.8684 }
+        return dist
+    }
     
     $scope.makeAReservation = function (field) {
         

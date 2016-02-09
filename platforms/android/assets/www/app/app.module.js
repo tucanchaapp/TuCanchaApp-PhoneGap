@@ -1,1 +1,1 @@
-angular.module('tuCanchaApp', ['ngRoute','ui.bootstrap.datetimepicker']);
+angular.module('tuCanchaApp', ['ngRoute','ui.bootstrap.datetimepicker','angularSpinner']);

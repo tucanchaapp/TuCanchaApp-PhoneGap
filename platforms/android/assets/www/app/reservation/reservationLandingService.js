@@ -30,11 +30,10 @@ function reservationFactory($q) {
         
             var defer = $q.defer();
 
-            var fieldObject = Parse.Object.extend("Reservation");
-            var query = new Parse.Query(fieldObject);
-            query.equalTo("date", reservationDate);
-     
-            
+            var Reservation = Parse.Object.extend("Reservation");                                    
+            var query = new Parse.Query(Reservation);           
+            query.equalTo("date", reservationDate);     
+    
             query.find( {        
                 success: function(results) {
                     defer.resolve(results)

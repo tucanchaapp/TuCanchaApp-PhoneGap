@@ -9,7 +9,7 @@ function loginController($scope,$location,$rootScope){
 
          if ($scope.login_username != undefined  ){
              if($scope.login_password != undefined){
-                 alert("")
+                 
                  Parse.User.logIn($scope.login_username, $scope.login_password, {
 
                   success: function(user) {
@@ -35,5 +35,9 @@ function loginController($scope,$location,$rootScope){
          }
          
      }
+     
+    if (Parse.User.current()) {       
+            $location.path('/reservationLanding');                 
+    }
           
 }

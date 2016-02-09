@@ -26,20 +26,13 @@ function reservationFactory($q) {
             return defer.promise;
 
         },
-        getReservations: function(reservationDate,city){
+        getReservations: function(reservationDate){
         
             var defer = $q.defer();
 
-            var Reservation = Parse.Object.extend("Reservation");
-            var Field = Parse.Object.extend("Field");
-            var innerQuery = new Parse.Query(Field);
-            innerQuery.equalTo("city",city);
-            
-            
-            var query = new Parse.Query(Reservation);
-            query.matchesQuery("fieldId",innerQuery);
-            query.equalTo("date", reservationDate);
-     
+            var Reservation = Parse.Object.extend("Reservation");                                    
+            var query = new Parse.Query(Reservation);           
+            query.equalTo("date", reservationDate);     
     
             query.find( {        
                 success: function(results) {
