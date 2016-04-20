@@ -32,8 +32,8 @@ body {
         linear,
         left top,
         left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
+        color-stop(0, #7cb854),
+        color-stop(0.51, #7cb854)
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
@@ -114,11 +114,16 @@ h1 {
 }
 
 .reservation_table {
-  border: 1px solid #666;   
+  border: 1px solid #fff;   
     width: 100%;
 }
 .reservation_th {
-  background: #f8f8f8; 
+  background: #428011; 
+    color: #fff;
   font-weight: bold;    
     padding: 2px;
+}
+
+.reservation_tr {
+    color: #fff;     
 }

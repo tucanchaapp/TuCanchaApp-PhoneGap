@@ -10,6 +10,7 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
    
     
     $scope.checkAvailableFilds = function () {
+        $scope.fields = [];
         if($scope.data != undefined){
             usSpinnerService.spin('spinner-1');
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -30,7 +31,7 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
                                     var fieldGeoPoint = new Parse.GeoPoint(field.get('venueId').get('Location'));                       
                                     var fieldDistance = distance(position.coords.latitude, position.coords.longitude, fieldGeoPoint.latitude, fieldGeoPoint.longitude, "K");
                                     
-                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 16){
+                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 40){
                                         var json_field = {}
 
                                         json_field ["name"]    = field.get('name')   

@@ -25,6 +25,7 @@
 #div-login-msg,
 #div-lost-msg,
 #div-register-msg {
+    color: #fff;
     border: 1px solid #dadfe1;
     height: 30px;
     line-height: 28px;
@@ -109,6 +110,7 @@
 
 .checkbox {
     margin-bottom: 0px;
+    color: #fff;
 }
 
 .btn {
@@ -130,7 +132,7 @@
 
 .btn-link {
     padding: 5px 10px 0px 0px;
-    color: #95a5a6;
+    color: #fff;
 }
 
 .btn-link:hover, .btn-link:focus {
