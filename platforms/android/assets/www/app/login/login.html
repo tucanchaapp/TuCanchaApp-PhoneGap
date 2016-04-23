@@ -1,38 +1,47 @@
- <div>
-            <div class="modal-header" align="center">
-               <img class="img-circle" id="img_logo" src="img/logo.png">					
-            </div>
-            
-             <div id="div-forms">
-                
-                    <!-- Begin # Login Form -->
-                    
-		                <div class="modal-body">
-				    		<div id="div-login-msg">
-                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-login-msg">Escribe tu correo y contraseña.</span>
-                            </div>
-				    		<input ng-model="login_username" id="login_username" class="form-control" type="text" placeholder="Usuario (correo)" required>
-				    		<input ng-model="login_password" id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Recordarme
-                                </label>
-                            </div>
-        		    	</div>
-				        <div class="modal-footer">
-                            <div>
-                                <button ng-click="logIn()" type="button" class="btn btn-primary btn-lg btn-block">Iniciar sesion</button>
-                            </div>
-				    	    <div>
-                                <button id="login_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>             
-                                <button ng-click="go('/setUpAccount')" id="login_register_btn" type="button" class="btn btn-link">Registrar</button>
-                            </div>
-				        </div>
-                    
-                    <!-- End # Login Form -->
-                                  
-                                       
-                </div>
-                <!-- End # DIV Form -->
-        </div>
+<div class="modal-header" align="center">
+   <img id="img_logo" src="img/logo.png">                    
+</div>
+
+
+    
+<div class="container">
+    
+    <div id="div-forms">
+    
+        <!-- Begin # Login Form -->
+        <md-input-container class="md-block">
+            <!-- Use floating placeholder instead of label -->
+            <md-icon class="material-icons">email</md-icon>
+            <input ng-model="login_username" id="login_username" type="email" placeholder="Email" ng-required="true" autocomplete="off">
+        </md-input-container>
+
+        <md-input-container >
+            <!-- Use floating placeholder instead of label -->
+            <md-icon class="material-icons">fingerprint</md-icon>
+            <input ng-model="login_password" id="login_password" type="password" autocomplete="off" placeholder="Contraseña" ng-required="true">
+        </md-input-container>
+        
+
+<!--         <md-checkbox ng-model="no_hace_nada" aria-label="Recordarme">
+          <span class="white">Recordarme</span>
+        </md-checkbox> -->
+
+        <md-button ng-click="logIn()" class="md-raised"><span class="ng-scope white">Iniciar sesión</span>
+        </md-button>
+
+        <md-button id="login_lost_btn" >
+            <span class="ng-scope white">Olvidaste tu contraseña?</span>
+        </md-button>
+
+        <md-button ng-click="go('/setUpAccount')" id="login_register_btn">
+            <span class="ng-scope white">Regístrate</span>
+        </md-button>
+    
+
+        <!-- End # Login Form -->
+    </div>
+</div>
+
+
+
+    
