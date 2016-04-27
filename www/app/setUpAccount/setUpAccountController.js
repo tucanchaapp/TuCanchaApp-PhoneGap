@@ -20,7 +20,7 @@ function setUpAccountController($scope){
 
             user.signUp(null, {
               success: function(user) {
-                alert("El usuario "+$scope.register_email+" fue creado exitosamente.")
+                alert("El usuario "+$scope.register_email+" fue creado exitosamente, porfavor confirma tu correo.")
 
               },
               error: function(user, error) {
@@ -31,7 +31,7 @@ function setUpAccountController($scope){
          
          
          }else{
-            alert("Por favor diligencie todos los campos del formulario")
+            alert("Por favor llena todos los campos del formulario")
          }
                          
          

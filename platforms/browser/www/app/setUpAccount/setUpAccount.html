@@ -1,26 +1,58 @@
-<div id="div-forms">
-                
- <!-- Begin | Register Form -->
-                    <div ng-controller="setUpAccountController" id="register-form">
-            		    <div class="modal-body">
-		    				<div id="div-register-msg">
-                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-register-msg">Creacion de cuenta.</span>
-                            </div>
-                            <input ng-model="register_name" id="register_name" class="form-control" type="text" placeholder="Nombre" required>
-                            <input ng-model="register_phone" id="register_phone" class="form-control" type="text" placeholder="Celular" required>
-                            <input ng-model="register_email" id="register_email" class="form-control" type="text" placeholder="Usuario (correo)" required>                           
-                            <input ng-model="register_password" id="register_password" class="form-control" type="password" placeholder="contraseña" required>
-            			</div>
-		    		    <div class="modal-footer">
-                            <div>
-                                <button ng-click="signUp()" type="submit" class="btn btn-primary btn-lg btn-block">Registrar</button>
-                            </div>
-                            <div>
-                                <button ng-click="go('/login')" id="register_login_btn" type="button" class="btn btn-link">Acceder</button>
-                                <button id="register_lost_btn" type="button" class="btn btn-link">Olvidaste tu contraseña?</button>
-                            </div>
-		    		    </div>
-                    </div>
-                    <!-- End | Register Form -->
+<div class="container">
+    <div id="div-forms">
+                    
+        <!-- Begin | Register Form -->
+        <div ng-controller="setUpAccountController" id="register-form">
+
+            <div id="div-register-msg">
+
+                <h2 id="text-register-msg"> 
+                    <md-icon class="material-icons">assignment turned in</md-icon> Regístrate!
+                </h2>
+                <br>
+                <br>
+            </div>
+
+            <md-input-container class="md-block">
+                <!-- Use floating placeholder instead of label -->
+                <md-icon class="material-icons">mood</md-icon>
+                <input ng-model="register_name" id="register_name" type="text" placeholder="Nombre" ng-required="true" autocomplete="off">
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <!-- Use floating placeholder instead of label -->
+                <md-icon class="material-icons">phone</md-icon>
+                <input ng-model="register_phone" id="register_phone" type="text" placeholder="Célular" ng-required="true" autocomplete="off">
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <!-- Use floating placeholder instead of label -->
+                <md-icon class="material-icons">email</md-icon>
+                <input ng-model="register_email" id="register_email" type="email" placeholder="Email" ng-required="true" autocomplete="off">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <!-- Use floating placeholder instead of label -->
+                <md-icon class="material-icons">fingerprint</md-icon>
+                <input ng-model="register_password" id="register_password" type="password" placeholder="Contraseña" ng-required="true" autocomplete="off">
+            </md-input-container>
+        </div>
+
+
+
+<!--         <md-button id="register_lost_btn" >
+            <span class="ng-scope white">Olvidaste tu contraseña?</span>
+        </md-button> -->
+        
+        <md-button ng-click="signUp()" type="submit" class="md-raised">
+            <span class="ng-scope white">Registrarse</span>
+        </md-button>
+
+        <md-button ng-click="go('/login')" id="register_login_btn">
+            <span class="ng-scope white">Acceder</span>
+        </md-button>
+
+
+    </div>
+    <!-- End | Register Form -->
 </div>
