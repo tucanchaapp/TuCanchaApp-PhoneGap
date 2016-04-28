@@ -6,6 +6,10 @@ body{
     color: #7cb854;
 }
 
+.date-picker-wrapper{
+    display: none;
+}
+
 .container{
     padding: 30px;
 }
