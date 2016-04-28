@@ -1,12 +1,17 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService'];
+reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService','$location'];
    
 
-function reservationLandingController($scope,reservationFactory,usSpinnerService){
+function reservationLandingController($scope,reservationFactory,usSpinnerService,$location){
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
+
+    $scope.logOut = function(){
+        Parse.User.logOut();
+        $location.path('/login');
+    }
    
     
     $scope.checkAvailableFilds = function () {
