@@ -1,5 +1,13 @@
+
+
+
+
 // configure our routes
 angular.module('tuCanchaApp').config(function($routeProvider) {
+
+
+
+
     $routeProvider
 
         // route for the about page
@@ -13,7 +21,8 @@ angular.module('tuCanchaApp').config(function($routeProvider) {
         })
     
         .when('/login', {
-            templateUrl : 'app/login/login.html'       
+            templateUrl : 'app/login/login.html',
+            controller: 'loginController'     
         })
     
         .when('/reservationLanding', {

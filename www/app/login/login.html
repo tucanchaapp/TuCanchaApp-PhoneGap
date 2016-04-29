@@ -6,7 +6,7 @@
     
 <div class="container">
     
-    <div id="div-forms">
+    <form ng-submit="logIn()">
     
         <!-- Begin # Login Form -->
         <md-input-container class="md-block">
@@ -26,7 +26,7 @@
           <span class="white">Recordarme</span>
         </md-checkbox> -->
 
-        <md-button ng-click="logIn()" class="md-raised"><span class="ng-scope white">Iniciar sesión</span>
+        <md-button type="submit" class="md-raised"><span class="ng-scope white">Iniciar sesión</span>
         </md-button>
 <!-- 
         <md-button id="login_lost_btn" >
@@ -39,7 +39,7 @@
     
 
         <!-- End # Login Form -->
-    </div>
+    </form>
 </div>
 
 

@@ -6,8 +6,14 @@ body{
     color: #7cb854;
 }
 
+.angular-google-map-container { height: 400px; }
+
 .date-picker-wrapper{
     display: none;
+}
+
+md-input-container:not(.md-input-invalid).md-input-has-value label{
+    color: #7cb854;
 }
 
 .container{
@@ -19,11 +25,11 @@ body{
 }
 
 md-input-container .md-input{
-    border-color: #6FFF0F;
+    border-color: #7cb854;
 }
 
 md-input-container label{
-    color: #B2D59A;
+    color: #7cb854;
 }
 
 md-input-container.md-default-theme .md-input, md-input-container .md-input{
