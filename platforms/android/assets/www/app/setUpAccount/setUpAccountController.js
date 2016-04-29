@@ -4,8 +4,8 @@ setUpAccountController.$inject = ['$scope'];
    
 function setUpAccountController($scope){   
      $scope.signUp = function ( ) {
-         
-         if($scope.register_email != undefined && $scope.register_password != undefined && $scope.register_email != undefined && $scope.register_name != undefined){
+          console.log("Trying to register");
+         if($scope.register.email != undefined && $scope.register.password != undefined && $scope.register.email != undefined && $scope.register.name != undefined){
          
             var user = new Parse.User();
             user.set("username", $scope.register_email);
@@ -13,9 +13,6 @@ function setUpAccountController($scope){
             user.set("email", $scope.register_email);
             user.set("name", $scope.register_name);
             user.set("business", "NO");
-
-
-            // other fields can be set just like with Parse.Object
             user.set("phone", $scope.register_phone);
 
             user.signUp(null, {

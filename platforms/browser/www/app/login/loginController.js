@@ -1,43 +1,62 @@
 angular.module('tuCanchaApp').controller('loginController',loginController);
 
 loginController.$inject = ['$scope','$location','$rootScope'];
-   
+
 
 function loginController($scope,$location,$rootScope){
-    
-     $scope.logIn = function () {
 
-         if ($scope.login_username != undefined  ){
-             if($scope.login_password != undefined){
-                 
-                 Parse.User.logIn($scope.login_username, $scope.login_password, {
+  $rootScope.currentUser = Parse.User.current();
 
-                  success: function(user) {
-                      $rootScope.$apply(function() {
-                        $location.path('/reservationLanding');            
-                      });
-                  },
-                  error: function(error) {
-                      if(error.code == 101){
-                        alert("usuario o contraseña invalido")
-                      }else{
-                        alert("Code: " +error.code +" Message: " + error.message);              
-                      }
-                      
-                  }
-
-                })
-             }else{
-                alert("Por favor ingrese su contraseña ")    
-             }
-         }else{
-            alert("Por favor ingrese su correo")
-         }
-         
-     }
-     
-    if (Parse.User.current()) {       
-            $location.path('/reservationLanding');                 
+  $rootScope.loggedIn = function() {
+    if ($rootScope.currentUser === null) {
+      return false;
+    } else {
+      return true;
     }
-          
+  };
+
+
+  // redirect to "/reservationLanding" if user is already logged in
+  if ($rootScope.loggedIn() === true) {
+    $location.path("/reservationLanding");
+  }
+
+  function loginSuccessful(user) {
+    $rootScope.$apply(function() {
+      $rootScope.currentUser = Parse.User.current();
+      $location.path("/reservationLanding");
+    });
+  }
+
+  function loginUnsuccessful(user, error) {
+    if(error.code == 101){
+      alert("usuario o contraseña invalido")
+    }else{
+      alert("Error: " + error.message + " (" + error.code + ")");             
+    }
+    
+  }
+
+
+
+  $scope.logIn = function() {   
+    console.log("Trying To LogIn");
+    if ($scope.login_username != undefined  ){
+      if($scope.login_password != undefined){
+        var username = $scope.login_username;
+        var password = $scope.login_password;
+
+        Parse.User.logIn(username, password, {
+          success: loginSuccessful,
+          error: loginUnsuccessful
+        });
+      }
+      else{
+        alert("Por favor ingrese su contraseña ");
+      }
+    }
+    else{
+      alert("Por favor ingrese su correo");
+    }
+  };          
 }

@@ -1,15 +1,49 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService','$location'];
+reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService','$location','$rootScope'];
    
 
-function reservationLandingController($scope,reservationFactory,usSpinnerService,$location){
+function reservationLandingController($scope,reservationFactory,usSpinnerService,$location,$rootScope){
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
 
+
+    //BEGIN GOOGLE MAPS RELATED STUFF
+    $scope.map = { center: { latitude: 6.249683, longitude: -75.5640819 }, zoom: 11 };
+
+
+    var Venue = Parse.Object.extend("Venue");
+
+
+    var query = new Parse.Query(Venue);
+
+   
+    query.find({
+      success: function(venueLocations) {
+        for (var i = 0; i < venueLocations.length; i++) {
+          var eachVenue = venueLocations[i];
+          var eachVenueLocation = eachVenue.get('Location');
+          var point = new Parse.GeoPoint(eachVenueLocation);
+          console.log("Latitud:" + point.latitude + " - " + "Longitud:" + point.longitude + ' de ' + eachVenue.get('Name'));
+        }
+      }
+    });
+
+    // $scope.venueMarkers = {
+    //   coords: {
+    //       latitude: point.latitude,
+    //       longitude: point.longitud
+    //   }
+    // }
+
+    //END GOOGLE MAPS RELATED STUFF
+
+
     $scope.logOut = function(){
         Parse.User.logOut();
+        $rootScope.currentUser = null;
+        $scope.currentUser = null;
         $location.path('/login');
     }
    
