@@ -5,7 +5,7 @@ setUpAccountController.$inject = ['$scope'];
 function setUpAccountController($scope){   
      $scope.signUp = function ( ) {
           console.log("Trying to register");
-         if($scope.register.email != undefined && $scope.register.password != undefined && $scope.register.email != undefined && $scope.register.name != undefined){
+         if($scope.register_email != undefined && $scope.register_password != undefined && $scope.register_email != undefined && $scope.register_name != undefined){
          
             var user = new Parse.User();
             user.set("username", $scope.register_email);
@@ -17,7 +17,7 @@ function setUpAccountController($scope){
 
             user.signUp(null, {
               success: function(user) {
-                alert("El usuario "+$scope.register_email+" fue creado exitosamente, porfavor confirma tu correo.")
+                alert("El usuario "+$scope.register_email+" fue creado exitosamente, Bienvenido a Tu Cancha!.")
 
               },
               error: function(user, error) {
