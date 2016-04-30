@@ -4,7 +4,7 @@
       <md-tab label="Tu Cancha">
         <md-content class="md-padding">
           <h1 class="md-display-2">Tu Cancha</h1>
-  <!--           <li ng-cloak ng-show="loggedIn()"><a href="#account">{{ currentUser.get("username") }}</a></li> -->
+
             <div class="date-picker-wrapper">
                 <div id="div-forms">
                                  
@@ -55,8 +55,84 @@
           <h1 class="md-display-2">Canchas</h1>
 
           <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-<!--             <ui-gmap-marker idKey='1' coords='venueMarkers.coords'> </ui-gmap-marker>
- -->          </ui-gmap-google-map>
+            <ui-gmap-marker idKey='1' coords='marker1.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker1.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='2' coords='marker2.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker2.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='3' coords='marker3.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker3.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='4' coords='marker4.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker4.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='5' coords='marker5.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker5.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='6' coords='marker6.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker6.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='7' coords='marker7.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker7.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='8' coords='marker8.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker8.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='9' coords='marker9.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker9.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='10' coords='marker10.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker10.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='11' coords='marker11.coords'>
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker11.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='12' coords='marker12.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker12.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+
+            <ui-gmap-marker idKey='13' coords='marker13.coords'> 
+              <ui-gmap-window isIconVisibleOnClick="true" show="true">
+                  <div>{{marker13.message}}</div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
+          </ui-gmap-google-map>
 
         </md-content>
       </md-tab>
@@ -70,6 +146,10 @@
       <md-tab label="Opciones">
         <md-content class="md-padding">
           <h1 class="md-display-2">Opciones</h1>
+          <li ng-cloak ng-show="loggedIn()"><a href="#account">{{ currentUser.get("username") }}</a></li>
+          <div class="modal-body">
+              <p>Hola {{user_name}} elige la fecha en la que te gustaria reservar tu cancha</p>
+          </div>
           <md-button ng-click="logOut()" class="md-raised"><span class="ng-scope white">Cerrar sesión</span>
         </md-content>
       </md-tab>
