@@ -1,16 +1,17 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory','usSpinnerService','$location','$rootScope'];
+reservationLandingController.$inject = ['$scope','reservationFactory','$location','$rootScope'];
    
 
-function reservationLandingController($scope,reservationFactory,usSpinnerService,$location,$rootScope){
+function reservationLandingController($scope,reservationFactory,$location,$rootScope){
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
 
 
+
     //BEGIN GOOGLE MAPS RELATED STUFF
-    $scope.map = { center: { latitude: 7.5, longitude: -75.5640819 }, zoom: 6 };
+    $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
 
     $scope.marker1 = {
        id: 1,
@@ -21,7 +22,7 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
        message: "La Jaula Del Angel"
     };
 
-    
+
 
     $scope.marker2 = {
        id: 2,
@@ -193,15 +194,16 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
         $location.path('/login');
     }
    
-    
+    $scope.isHidden = false;
     $scope.checkAvailableFilds = function () {
+        $scope.isHidden = true;
         $scope.fields = [];
         if($scope.data != undefined){
-            usSpinnerService.spin('spinner-1');
+            
             navigator.geolocation.getCurrentPosition(function(position) {
                 
 
-                                                                                                                                                                                                                                         reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
+                reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
 
                             var reservationsIds = []
                             for (var i = 0; i < reservations.length; i++) {
@@ -236,14 +238,16 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
              
 
             },function onError(error) {
+                    $scope.isHidden = false;
                     if (error.code == 3){
                         alert("El tiempo de expera ha expirado \n si el prolema persiste reinicie su equipo")
                     }
                     alert('code: '    + error.code    + '\n' +
                           'message: ' + error.message + '\n');
             }, {timeout:15000, enableHighAccuracy: true});
-            usSpinnerService.stop('spinner-1');      
+                
         }else{
+            $scope.isHidden = false;
             alert("Por favor seleccione una fecha")
         }
     }
@@ -262,6 +266,9 @@ function reservationLandingController($scope,reservationFactory,usSpinnerService
         if (unit=="N") { dist = dist * 0.8684 }
         return dist
     }
+
+
+    
     
     $scope.makeAReservation = function (field) {
         
