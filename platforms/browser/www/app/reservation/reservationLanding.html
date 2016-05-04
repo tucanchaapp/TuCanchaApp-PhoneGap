@@ -1,6 +1,6 @@
-<div ng-cloak>
+<div ng-cloak class="white-bg">
   <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
+    <md-tabs md-dynamic-height md-border-bottom >
       <md-tab label="Tu Cancha">
         <md-content >
 
@@ -97,7 +97,7 @@
       <md-tab label="Reserva Ya!">
         <md-content>
 
-          <div class="datatime_wrapper" ng-hide="isHidden">
+          <div class="datatime_wrapper" ng-hide="isHidden" >
             <div class="modal-body">
                 <p>Hola {{user_name}} elige la fecha en la que te gustaría reservar tu cancha!</p>
             </div>
@@ -125,13 +125,10 @@
               <br>
           </div>
                              
-            
+            <loading></loading>
             <div class="results_fields_wrapper" ng-hide="resultIsHidden">
               <table class="reservation_table">
-                  <tr>
-                      <th class="reservation_th">Empresa</th>
-                      <th class="reservation_th">Cancha</th>
-                  </tr>
+         
                   <tr class="reservation_tr" ng-click="makeAReservation(field)" ng-repeat="field in fields track by $index">                
                       <td>{{field.company}}</td>
                       <td>{{field.name}}</td>
