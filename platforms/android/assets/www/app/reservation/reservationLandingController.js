@@ -1,6 +1,6 @@
 angular.module('tuCanchaApp').controller('reservationLandingController',reservationLandingController);
 
-reservationLandingController.$inject = ['$scope','reservationFactory','$location','$rootScope'];
+reservationLandingController.$inject = ['$scope','reservationFactory','$location','$rootScope', '$http'];
    
 
 function reservationLandingController($scope,reservationFactory,$location,$rootScope){
@@ -187,6 +187,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     //END GOOGLE MAPS RELATED STUFF
 
 
+
     $scope.logOut = function(){
         Parse.User.logOut();
         $rootScope.currentUser = null;
@@ -198,12 +199,20 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     $scope.resultIsHidden = true;
 
     $scope.reSearch = function(){
-      console.log('fired');
       $scope.isHidden = false;
       $scope.resultIsHidden = true;
     }
 
+
+    $scope.data = { active: false };
+    
+    // $scope.toggle = function () {
+    //   $scope.data.active = !$scope.data.active;
+    // };
+    
+
     $scope.checkAvailableFilds = function () {
+        $scope.loading = true;
         $scope.isHidden = true;
         $scope.resultIsHidden = false;
         $scope.fields = [];
@@ -240,11 +249,13 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                                 }
 
                                 $scope.fields=json_fields;
+                                $scope.loading = false;
 
                             })         
 
                     })
-             
+
+         
 
             },function onError(error) {
                     $scope.isHidden = false;

@@ -1,4 +1,4 @@
-body{
+.background-wrapper{
 
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/background6.jpg) no-repeat center center fixed;
     background-size: 100% 100%;
@@ -10,8 +10,10 @@ body{
     height: 1000px; 
 }
 
-
-
+.white-bg{
+    background-image: none;
+    background-color: white;
+}
 
 md-input-container:not(.md-input-invalid).md-input-has-value label{
     color: #7cb854;
