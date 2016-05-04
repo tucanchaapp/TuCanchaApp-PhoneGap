@@ -195,8 +195,17 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     }
    
     $scope.isHidden = false;
+    $scope.resultIsHidden = true;
+
+    $scope.reSearch = function(){
+      console.log('fired');
+      $scope.isHidden = false;
+      $scope.resultIsHidden = true;
+    }
+
     $scope.checkAvailableFilds = function () {
         $scope.isHidden = true;
+        $scope.resultIsHidden = false;
         $scope.fields = [];
         if($scope.data != undefined){
             

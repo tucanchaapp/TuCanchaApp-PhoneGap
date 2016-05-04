@@ -108,7 +108,7 @@
               <center><md-input-container>
                   <input id="datatimepicker" type="text"  value="{{ data.dateDropDownInput | date:'dd-MM-yyyy hh:mm a' }}" readonly ></center>
             </div>
-                  <center><datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minView: 'hour' }"/>
+                  <center><datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ minView: 'hour' }"/>
               </md-input-container></center>
             
 
@@ -126,7 +126,7 @@
           </div>
                              
             
-
+            <div class="results_fields_wrapper" ng-hide="resultIsHidden">
               <table class="reservation_table">
                   <tr>
                       <th class="reservation_th">Empresa</th>
@@ -137,10 +137,10 @@
                       <td>{{field.name}}</td>
                   </tr>
               </table>
-          
-                                                 
-        
 
+              <center><md-button ng-click="reSearch()" type="button" class="md-raised"><span class="ng-scope white">Buscar En Otra Fecha</span>
+              </md-button></center>
+            </div>
         </md-content>
       </md-tab>
 
