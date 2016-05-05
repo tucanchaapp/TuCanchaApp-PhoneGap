@@ -150,24 +150,7 @@
                       
                     </tr>
                 </table>
-<!-- 
-                <md-list-item ng-repeat="field in fields track by $index" >
-           
-                  <i class="fa fa-futbol-o" aria-hidden="true"></i>
 
-                  <p ng-click="makeAReservation(field)"><b>{{field.company}} </b> || {{field.name}} ||  || {{field.type}}</p>
-                  <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>
-                </md-list-item>
-              </md-list>
- -->
-
-<!--               <table class="reservation_table">
-         
-                  <tr class="reservation_tr" ng-click="makeAReservation(field)" ng-repeat="field in fields track by $index">                
-                      <td>{{field.company}}</td>
-                      <td>{{field.name}}</td>
-                  </tr>
-              </table> -->
 
               <center><md-button ng-click="reSearch()" type="button" class="md-raised"><span class="ng-scope white">Buscar En Otra Fecha</span>
               </md-button></center>
@@ -175,9 +158,35 @@
         </md-content>
       </md-tab>
 
+      <md-tab label="Canchas" data-ng-init="VenuesInfo()">
+        <md-content class="md-padding">
+
+          <table class="table table-striped" >
+        
+              <tr ng-repeat="venue in venues track by $index">
+                
+                  <td><i class="fa fa-futbol-o" aria-hidden="true"></i>
+                      {{venue.name}}
+                  </td>
+
+                  <td>
+                      <center>{{venue.phone}}</center>
+                  </td>
+
+                  <td>
+                      <center>{{venue.address}}</center>
+                  </td>
+                
+              </tr>
+          </table>
+
+      
+        
+        </md-content>
+      </md-tab>
+
       <md-tab label="Mis Reservas">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Mis Reservas</h1>
         
         </md-content>
       </md-tab>
