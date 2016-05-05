@@ -15,6 +15,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     $scope.marker1 = {
        id: 1,
+
+
        coords: {
          latitude: 6.197908,
          longitude: -75.5589
@@ -209,7 +211,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     // $scope.toggle = function () {
     //   $scope.data.active = !$scope.data.active;
     // };
-    
+
 
     $scope.checkAvailableFilds = function () {
         $scope.loading = true;
@@ -242,6 +244,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                                         json_field ["name"]    = field.get('name')   
                                         json_field ["company"] = field.get('venueId').get('Name')                                        
                                         json_field ["id"]      = field.id
+                                        json_field ["type"]      = field.get('type')
 
                                         json_fields.push(json_field);
                                     }

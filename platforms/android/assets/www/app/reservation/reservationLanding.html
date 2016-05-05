@@ -8,8 +8,8 @@
 
           <!--MAP RELATED STUFF  -->
           <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-
-            <ui-gmap-marker idKey='1' coords='marker1.coords'> 
+<!--             icon= '{url:"/img/map_pin.png" }'
+ -->            <ui-gmap-marker idKey='1' coords='marker1.coords' > 
               <ui-gmap-window isIconVisibleOnClick="true" show="true">
                   <div>{{marker1.message}}</div>
               </ui-gmap-window>
@@ -126,14 +126,48 @@
           </div>
                              
             <loading></loading>
+
+
+
             <div class="results_fields_wrapper" ng-hide="resultIsHidden">
-              <table class="reservation_table">
+
+                <table class="table table-striped" >
+                  <tr>
+                    
+                      <th><center>Local</center></th>
+                      <th><center>Número </center></th>
+                      <th><center>Tipo</center></th>
+                    
+                  </tr>
+                    <tr ng-repeat="field in fields track by $index">
+                      
+                        <td ng-click="makeAReservation(field)" title="'Cancha'"  ><i class="fa fa-futbol-o" aria-hidden="true"></i>
+                            {{field.company}}</td>
+                        <td ng-click="makeAReservation(field)" title="'Número'"  >
+                            <center>{{field.name}}</center></td>
+                        <td ng-click="makeAReservation(field)" title="'Tipo'"  >
+                            <center>{{field.type}}</center></td>
+                      
+                    </tr>
+                </table>
+<!-- 
+                <md-list-item ng-repeat="field in fields track by $index" >
+           
+                  <i class="fa fa-futbol-o" aria-hidden="true"></i>
+
+                  <p ng-click="makeAReservation(field)"><b>{{field.company}} </b> || {{field.name}} ||  || {{field.type}}</p>
+                  <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>
+                </md-list-item>
+              </md-list>
+ -->
+
+<!--               <table class="reservation_table">
          
                   <tr class="reservation_tr" ng-click="makeAReservation(field)" ng-repeat="field in fields track by $index">                
                       <td>{{field.company}}</td>
                       <td>{{field.name}}</td>
                   </tr>
-              </table>
+              </table> -->
 
               <center><md-button ng-click="reSearch()" type="button" class="md-raised"><span class="ng-scope white">Buscar En Otra Fecha</span>
               </md-button></center>

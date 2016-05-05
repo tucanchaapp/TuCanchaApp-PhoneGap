@@ -19,6 +19,12 @@ md-input-container:not(.md-input-invalid).md-input-has-value label{
     color: #7cb854;
 }
 
+.fa-futbol-o{
+    color: #7cb854;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
 .container{
     padding: 30px;
 }
