@@ -26,6 +26,27 @@ function reservationFactory($q) {
             return defer.promise;
 
         },
+
+        getVenues: function(){
+            var defer = $q.defer();
+
+            var venueObject = Parse.Object.extend("Venue");
+            var query = new Parse.Query(venueObject);
+            
+            query.find( {        
+                success: function(results) {
+                    defer.resolve(results)
+                    return results                    
+                },
+                error: function(object, error) {
+                    defer.reject(error)
+                }
+            });
+
+            return defer.promise;
+
+        },
+
         getReservations: function(reservationDate){
         
             var defer = $q.defer();

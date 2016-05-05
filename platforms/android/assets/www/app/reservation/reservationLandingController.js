@@ -213,6 +213,31 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     //   $scope.data.active = !$scope.data.active;
     // };
 
+    $scope.VenuesInfo = function (){
+
+      reservationFactory.getVenues().then(function(venues){
+        json_fields = [];
+
+        for (var i = 0; i < venues.length; i++) {
+            var venue = venues[i];
+            
+              var json_field = {}
+
+              json_field ["city"]    = venue.get('City')   
+              json_field ["name"] = venue.get('Name')                                        
+              json_field ["phone"]      = venue.get('Phone')
+              json_field ["address"]      = venue.get('Address')
+              json_field ["open"]      = venue.get('Open')
+              json_field ["close"]      = venue.get('Close')
+              json_field ["fieldsNum"]      = venue.get('Fields')
+
+              json_fields.push(json_field);
+        }
+        $scope.venues=json_fields;
+      })
+
+    }
+
 
     $scope.checkAvailableFilds = function () {
         $scope.loading = true;
@@ -239,7 +264,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                                     var fieldGeoPoint = new Parse.GeoPoint(field.get('venueId').get('Location'));                       
                                     var fieldDistance = distance(position.coords.latitude, position.coords.longitude, fieldGeoPoint.latitude, fieldGeoPoint.longitude, "K");
                                     
-                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 40){
+                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 100){
                                         var json_field = {}
 
                                         json_field ["name"]    = field.get('name')   
