@@ -203,6 +203,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     $scope.reSearch = function(){
       $scope.isHidden = false;
       $scope.resultIsHidden = true;
+      $scope.loading = false;
     }
 
 
