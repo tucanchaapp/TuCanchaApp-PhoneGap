@@ -5,7 +5,7 @@ angular.module('tuCanchaApp', ['ui.bootstrap.datetimepicker','ngRoute', 'ngMater
 	    return {
 	      restrict: 'E',
 	      replace:true,
-	      template: '<div class="loading"><br><br><br><center><img src="img/spinner.gif"/></center><br><center><p>Buscando ...</p></center></div>',
+	      template: '<div class="loading"><br><br><br><center><img src="img/spinner.gif"/></center><br><center><p> </p></center></div>',
 	      link: function (scope, element, attr) {
 	            scope.$watch('loading', function (val) {
 	                if (val)
