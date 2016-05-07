@@ -32,6 +32,8 @@ function reservationFactory($q) {
 
             var venueObject = Parse.Object.extend("Venue");
             var query = new Parse.Query(venueObject);
+
+            query.include("mediaId")
             
             query.find( {        
                 success: function(results) {
@@ -67,7 +69,9 @@ function reservationFactory($q) {
 
             return defer.promise;
 
-        }
+        },
+
+
         
     }
     

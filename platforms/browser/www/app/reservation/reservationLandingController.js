@@ -12,180 +12,6 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     //BEGIN GOOGLE MAPS RELATED STUFF
     $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
-
-    $scope.marker1 = {
-       id: 1,
-
-
-       coords: {
-         latitude: 6.197908,
-         longitude: -75.5589
-       }, 
-       message: "La Jaula Del Angel"
-    };
-
-
-
-    $scope.marker2 = {
-       id: 2,
-       coords: {
-         latitude: 6.248461,
-         longitude: -75.589649
-       },
-       message: "Soccer 70"
-    };
-
-    $scope.marker3 = {
-       id: 3,
-       coords: {
-         latitude: 6.253798,
-         longitude: -75.599601
-       },
-       message: "Il Campo"
-    };
-
-    $scope.marker4 = {
-       id: 4,
-       coords: {
-         latitude: 6.246873,
-         longitude: -75.589571
-       },
-       message: "Wembley"
-    };
-
-    $scope.marker5 = {
-       id: 5,
-       coords: {
-         latitude: 6.13627,
-         longitude: -75.39126
-       },
-       message: "Neon Soccer"
-    };
-
-    $scope.marker6 = {
-       id: 6,
-       coords: {
-         latitude: 6.249364,
-         longitude: -75.594193
-       },
-       message: "Soccerfit"
-    };
-
-    $scope.marker7 = {
-       id: 7,
-       coords: {
-         latitude: 6.252657,
-         longitude: -75.574109
-       },
-       message: "Elite Del Futbol"
-    };
-
-    $scope.marker8 = {
-       id: 8,
-       coords: {
-         latitude: 10.447331,
-         longitude: -73.261455
-       },
-       message: "Biblos Futbol"
-    };
-
-    $scope.marker9 = {
-       id: 9,
-       coords: {
-         latitude: 10.421088,
-         longitude: -75.538963
-       },
-       message: "La Terraza FC"
-    };
-
-    $scope.marker10 = {
-       id: 10,
-       coords: {
-         latitude: 6.25744,
-         longitude: -75.589571
-       },
-       message: "El Golazo"
-    };
-
-    $scope.marker11 = {
-       id: 11,
-       coords: {
-         latitude: 6.181839,
-         longitude: -75.587543
-       },
-       message: "Señor Gol"
-    };
-
-    $scope.marker12 = {
-       id: 12,
-       coords: {
-         latitude: 6.188687,
-         longitude: -75.58938
-       },
-       message: "Wellness Center"
-    };
-
-    $scope.marker13 = {
-       id: 13,
-       coords: {
-         latitude: 6.260039,
-         longitude: -75.569753
-       },
-       message: "Los Estadios"
-    };
-
-
-
-
-   
-
- 
-
-
-
-    // var Venue = Parse.Object.extend("Venue");
-
-
-    // var query = new Parse.Query(Venue);
-
-
-   
-    // query.find({
-    //   success: function(venueLocations) {
-
-    //     var venueNames = new Array();
-    //     var venueLatitudes = new Array();
-    //     var venueLongitudes = new Array();
-
-    //     for (var i = 0; i < venueLocations.length; i++) {
-
-    //       var eachVenue = venueLocations[i];
-    //       var eachVenueLocation = eachVenue.get('Location');
-    //       var point = new Parse.GeoPoint(eachVenueLocation);
-
-    //       venueNames.push(eachVenue.get('Name'));
-    //       venueLatitudes.push(point.latitude);
-    //       venueLongitudes.push(point.longitude);
-
-    //       $scope.marker = {
-    //         id: i,
-    //         coords: {
-    //           latitude: venueLatitudes[i],
-    //           longitude: venueLongitudes[i]
-    //           },
-    //           message: venueNames[i]
-    //       }
-
-    //       console.log("Item número: " + i + "-"+ "Nombre: " + venueNames[i] + "-" + "Longitud: " + venueLongitudes[i] + "-" + "Latitud: " + venueLatitudes[i]);
-
-   
-    //     }
-
-    //   }
-    // });
-
-
-
     //END GOOGLE MAPS RELATED STUFF
 
 
@@ -209,9 +35,6 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     $scope.data = { active: false };
     
-    // $scope.toggle = function () {
-    //   $scope.data.active = !$scope.data.active;
-    // };
 
     $scope.VenuesInfo = function (){
 
@@ -220,23 +43,30 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
         for (var i = 0; i < venues.length; i++) {
             var venue = venues[i];
-            
               var json_field = {}
 
-              json_field ["city"]    = venue.get('City')   
+              json_field ["city"]    = venue.get('City')
+              json_field ["logo"]    = venue.get('mediaId').get('logo')._url
               json_field ["name"] = venue.get('Name')                                        
               json_field ["phone"]      = venue.get('Phone')
               json_field ["address"]      = venue.get('Address')
-              json_field ["open"]      = venue.get('Open')
-              json_field ["close"]      = venue.get('Close')
+              json_field ["open"]      = venue.get('open')
+              json_field ["close"]      = venue.get('close')
               json_field ["fieldsNum"]      = venue.get('Fields')
+              json_field ["coords"]      = venue.get('Location')
 
               json_fields.push(json_field);
         }
-        $scope.venues=json_fields;
+        $scope.venues=json_fields
+        console.log($scope.venues);
       })
 
     }
+
+
+
+
+
 
 
     $scope.checkAvailableFilds = function () {
@@ -261,7 +91,11 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                                              
                                 for (var i = 0; i < fields.length; i++) {
                                     var field = fields[i];
-                                    var fieldGeoPoint = new Parse.GeoPoint(field.get('venueId').get('Location'));                       
+                              
+                                    
+                                    var fieldGeoPoint = new Parse.GeoPoint(field.get('venueId').get('Location')); 
+                                   
+                                                          
                                     var fieldDistance = distance(position.coords.latitude, position.coords.longitude, fieldGeoPoint.latitude, fieldGeoPoint.longitude, "K");
                                     
                                     if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 100){
@@ -320,6 +154,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     
     
     $scope.makeAReservation = function (field) {
+        console.log('Make reservation triggered');
         
         if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company + '?')) { 
 
@@ -338,12 +173,10 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
             
             reservation.save(null, {
               success: function(reservation) {
-                // Execute any logic that should take place after the object is saved.
                 alert(Parse.User.current().get("name") + ' tu reserva fue exitosa!');
               },
               error: function(reservation, error) {
-                // Execute any logic that should take place if the save fails.
-                // error is a Parse.Error with an error code and message.
+
                 alert('Failed to create new object, with error code: ' + error.message);
               }
             });

@@ -6,6 +6,11 @@
     color: #7cb854;
 }
 
+.re_size{
+    width: 120px;
+    height: 100px;
+}
+
 .angular-google-map-container { 
     height: 1000px; 
 }
@@ -19,7 +24,7 @@ md-input-container:not(.md-input-invalid).md-input-has-value label{
     color: #7cb854;
 }
 
-.fa-futbol-o{
+.fa-futbol-o, .fa-compass, .fa-globe, .fa-phone, .fa-clock-o{
     color: #7cb854;
     margin-right: 10px;
     font-size: 30px;
