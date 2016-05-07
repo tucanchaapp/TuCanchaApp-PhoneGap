@@ -29,11 +29,7 @@ function loginController($scope,$location,$rootScope){
   }
 
   function loginUnsuccessful(user, error) {
-    if(error.code == 101){
-      alert("usuario o contraseña invalido")
-    }else{
-      alert("Error: " + error.message + " (" + error.code + ")");             
-    }
+    alert("Correo o contraseña inválido");
     
   }
 
