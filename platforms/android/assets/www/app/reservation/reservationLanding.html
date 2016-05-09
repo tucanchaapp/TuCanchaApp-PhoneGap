@@ -170,15 +170,6 @@
       </md-tab>
 
 
-      <md-tab label="Opciones">
-        <md-content class="md-padding">
-          <li ng-cloak ng-show="loggedIn()"><a href="#account">{{ currentUser.get("username") }}</a></li>
-          <div class="modal-body">
-              <b>Hola {{user_name}} , gracias por preferirnos, te esperamos pronto!</b>
-          </div>
-          <md-button ng-click="logOut()" class="md-raised"><span class="ng-scope white">Cerrar sesión</span>
-        </md-content>
-      </md-tab>
 
       <md-tab label="Mis Reservas" data-ng-init="myReservations()">
         <md-content >
@@ -197,6 +188,7 @@
             </tr>
               <tr ng-repeat="reservation in reservations track by $index" >
 
+
                   <td ><i class="fa fa-futbol-o" aria-hidden="true"></i>
                       {{reservation.venueName}}</td>
 
@@ -210,6 +202,16 @@
               </tr>
           </table>
            
+        </md-content>
+      </md-tab>
+
+      <md-tab label="Opciones">
+        <md-content class="md-padding">
+          <li ng-cloak ng-show="loggedIn()"><a href="#account">{{ currentUser.get("username") }}</a></li>
+          <div class="modal-body">
+              <b>Hola {{user_name}} , gracias por preferirnos, te esperamos pronto!</b>
+          </div>
+          <md-button ng-click="logOut()" class="md-raised"><span class="ng-scope white">Cerrar sesión</span>
         </md-content>
       </md-tab>
 
