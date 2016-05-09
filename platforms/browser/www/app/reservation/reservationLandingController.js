@@ -158,9 +158,9 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
         for (var i = 0; i < reservations.length; i++) {
             var reservation = reservations[i];
               var json_field = {}
-
               
-              json_field ["date"]  = reservation.get('date')
+              
+              json_field ["date"]  = moment(reservation.get('date')).format('MMMM Do YYYY, h:mm:ss a')
               json_field ["playerId"]  = reservation.get('playerId')
               json_field ["fieldId"]  = reservation.get('fieldId')
               json_field ["fieldName"]  = reservation.get('fieldId').get('name')
