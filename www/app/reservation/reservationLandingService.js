@@ -55,7 +55,10 @@ function reservationFactory($q) {
 
             var Reservation = Parse.Object.extend("Reservation");                                    
             var query = new Parse.Query(Reservation);           
-            query.equalTo("date", reservationDate);     
+            query.equalTo("date", reservationDate);   
+
+
+
     
             query.find( {        
                 success: function(results) {
@@ -70,6 +73,34 @@ function reservationFactory($q) {
             return defer.promise;
 
         },
+
+        getMyReservations: function(){
+
+            var defer = $q.defer();
+
+            var Reservation = Parse.Object.extend("Reservation");                                    
+            var query = new Parse.Query(Reservation);  
+        
+            
+            var currentUserId = Parse.User.current(); 
+            query.equalTo('playerId', currentUserId);
+            query.include("fieldId").include("venueId")
+
+                           
+        
+            query.find( {        
+                success: function(results) {
+                    defer.resolve(results)
+                    return results                    
+                },
+                error: function(object, error) {
+                    defer.reject(error)
+                }
+            });
+
+            return defer.promise;
+
+        }
 
 
         

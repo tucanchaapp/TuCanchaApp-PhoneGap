@@ -170,6 +170,41 @@
       </md-tab>
 
 
+
+      <md-tab label="Mis Reservas" data-ng-init="myReservations()">
+        <md-content >
+
+          <table class="table table-striped" >
+            <tr>
+
+                <th><center>Local</center></th>
+
+                <th><center>Cancha</center></th>
+              
+                <th><center>Fecha</center></th>
+                
+  
+              
+            </tr>
+              <tr ng-repeat="reservation in reservations track by $index" >
+
+
+                  <td ><i class="fa fa-futbol-o" aria-hidden="true"></i>
+                      {{reservation.venueName}}</td>
+
+                  <center><td >
+                      {{reservation.fieldName}}</td></center>
+                
+                  <center><td >
+                      {{reservation.date}}</td></center>
+                     
+                
+              </tr>
+          </table>
+           
+        </md-content>
+      </md-tab>
+
       <md-tab label="Opciones">
         <md-content class="md-padding">
           <li ng-cloak ng-show="loggedIn()"><a href="#account">{{ currentUser.get("username") }}</a></li>
