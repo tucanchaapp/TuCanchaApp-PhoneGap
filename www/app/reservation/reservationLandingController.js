@@ -150,6 +150,30 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
         return dist
     }
 
+    $scope.myReservations = function(){
+
+      reservationFactory.getMyReservations().then(function(reservations){
+        json_fields = [];
+
+        for (var i = 0; i < reservations.length; i++) {
+            var reservation = reservations[i];
+              var json_field = {}
+
+              
+              json_field ["date"]  = reservation.get('date')
+              json_field ["playerId"]  = reservation.get('playerId')
+              json_field ["fieldId"]  = reservation.get('fieldId')
+              json_field ["fieldName"]  = reservation.get('fieldId').get('name')
+              json_field ["venueName"]  = reservation.get('fieldId').get('venueId').get('Name')
+
+              json_fields.push(json_field);
+        }
+        $scope.reservations=json_fields
+        console.log($scope.venues);
+      })
+
+    }
+
 
     
     
