@@ -1,10 +1,9 @@
-<div ng-cloak class="white-bg">
+<div ng-cloak class="white-bg background-wrapper">
   <md-content>
-    <md-tabs md-dynamic-height md-border-bottom >
-      <md-tab label="Tu Cancha">
+    <md-tabs md-dynamic-height md-border-bottom >   
+      <md-tab label="Tu Cancha" >
         <md-content >
 
- 
 
           <!--MAP RELATED STUFF  -->
           <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -212,19 +211,26 @@
               <b>Hola {{user_name}} , gracias por preferirnos, te esperamos pronto!</b>
           </div>
           <md-button ng-click="logOut()" class="md-raised"><span class="ng-scope white">Cerrar sesión</span>
+
+       
         </md-content>
       </md-tab>
 
     </md-tabs>
   </md-content>
+
+
 </div>
 <br><br>
 <br>
 
+<div align="center">
+   <img class="fix_name" src="img/name.png">                    
+</div>
+
 
 
                 <!-- End # DIV Form -->
-
 
 
   

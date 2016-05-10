@@ -7,12 +7,10 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
-
-
-
-    //BEGIN GOOGLE MAPS RELATED STUFF
     $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
-    //END GOOGLE MAPS RELATED STUFF
+
+    
+
 
 
 
