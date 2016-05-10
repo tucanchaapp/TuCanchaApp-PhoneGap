@@ -7,12 +7,10 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
-
-
-
-    //BEGIN GOOGLE MAPS RELATED STUFF
     $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
-    //END GOOGLE MAPS RELATED STUFF
+
+    
+
 
 
 
@@ -78,6 +76,16 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
             
             navigator.geolocation.getCurrentPosition(function(position) {
                 
+              if ($scope.data.dateDropDownInput == undefined) {
+                alert("Por favor seleccione una fecha en su busqueda");
+                $scope.isHidden = false;
+                $scope.loading = false;
+                $scope.resultIsHidden = true;
+              }
+
+              else{
+
+
 
                 reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
 
@@ -116,22 +124,26 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
                             })         
 
-                    })
+                 
+
+                   })
+                }
 
          
 
             },function onError(error) {
                     $scope.isHidden = false;
                     if (error.code == 3){
-                        alert("El tiempo de expera ha expirado \n si el prolema persiste reinicie su equipo")
+                        alert("El tiempo de espera ha expirado \n ")
                     }
                     alert('code: '    + error.code    + '\n' +
                           'message: ' + error.message + '\n');
             }, {timeout:15000, enableHighAccuracy: true});
                 
         }else{
+            alert("Por favor seleccione una fecha");
             $scope.isHidden = false;
-            alert("Por favor seleccione una fecha")
+            
         }
     }
     
@@ -160,7 +172,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               var json_field = {}
 
 
-              json_field ["date"]  = moment(reservation.get('date')).format('MMMM Do YYYY, h:mm:ss a')
+              json_field ["date"]  = moment(reservation.get('date')).format('MMMM Do YYYY, h:mm a')
               json_field ["playerId"]  = reservation.get('playerId')
               json_field ["fieldId"]  = reservation.get('fieldId')
               json_field ["fieldName"]  = reservation.get('fieldId').get('name')
@@ -180,7 +192,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     $scope.makeAReservation = function (field) {
         console.log('Make reservation triggered');
         
-        if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company + '?')) { 
+        if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company + ' para la fecha '+moment($scope.data.dateDropDownInput.getTime()).format('MMMM Do YYYY, h:mm a')+' ?')) { 
 
             var Reservation = Parse.Object.extend("Reservation");
             var reservation = new Reservation();

@@ -1,14 +1,20 @@
-.background-wrapper{
 
+
+/*.background-wrapper{
+    background-color: white;
+}*/
+
+.background-wrapper-init{
     background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/background6.jpg) no-repeat center center fixed;
     background-size: 100% 100%;
     background-position:100% 100%;
     color: #7cb854;
 }
 
+
 .re_size{
-    width: 120px;
-    height: 100px;
+    width: 240px;
+    height: 240px;
 }
 
 .angular-google-map-container { 
@@ -75,11 +81,25 @@ md-tabs .md-tab.md-active{
 }
 
 #img_logo{
-    margin: 50px;
-    height: 100px;
-    width: 100px;
+    margin: 70px;
+
 }
 
+.fix_name{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    opacity: 0.5;
+}
+
+
+
+
+
+#text-register-msg{
+    color: #7cb854;
+    font-weight: bold;
+}
 
 .white{
     color: white;
