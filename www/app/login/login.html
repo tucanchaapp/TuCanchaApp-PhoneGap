@@ -1,40 +1,43 @@
 
 
 <div class="background-wrapper-init">
-    <div class="container">
+    <div class="container" >
+        <div class="form_wrapper" ng-hide="isHiddenLogIn">
+            <div align="center">
+               <img id="img_logo" src="img/logo.png">                    
+            </div>
+            
+            <form ng-submit="logIn()">
+            
+                <!-- Begin # Login Form -->
+                <md-input-container class="md-block">
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon class="material-icons">email</md-icon>
+                    <input ng-model="login_username" id="login_username" type="email" placeholder="Email" ng-required="true" autocomplete="off">
+                </md-input-container>
 
-        <div align="center">
-           <img id="img_logo" src="img/logo.png">                    
+                <md-input-container >
+                    <!-- Use floating placeholder instead of label -->
+                    <md-icon class="material-icons">fingerprint</md-icon>
+                    <input ng-model="login_password" id="login_password" type="password" autocomplete="off" placeholder="Contraseña" ng-required="true">
+                </md-input-container>
+                
+
+                <md-button type="submit" class="md-raised"><span class="ng-scope white">Iniciar sesión</span>
+                </md-button>
+
+                <md-button ng-click="go('/setUpAccount')" id="login_register_btn">
+                    <span class="ng-scope white">Regístrate</span>
+                </md-button>
+            
+                
+                <!-- End # Login Form -->
+
+            </form>
         </div>
         
-        <form ng-submit="logIn()">
-        
-            <!-- Begin # Login Form -->
-            <md-input-container class="md-block">
-                <!-- Use floating placeholder instead of label -->
-                <md-icon class="material-icons">email</md-icon>
-                <input ng-model="login_username" id="login_username" type="email" placeholder="Email" ng-required="true" autocomplete="off">
-            </md-input-container>
 
-            <md-input-container >
-                <!-- Use floating placeholder instead of label -->
-                <md-icon class="material-icons">fingerprint</md-icon>
-                <input ng-model="login_password" id="login_password" type="password" autocomplete="off" placeholder="Contraseña" ng-required="true">
-            </md-input-container>
-            
-
-            <md-button type="submit" class="md-raised"><span class="ng-scope white">Iniciar sesión</span>
-            </md-button>
-
-            <md-button ng-click="go('/setUpAccount')" id="login_register_btn">
-                <span class="ng-scope white">Regístrate</span>
-            </md-button>
-        
-            
-            <!-- End # Login Form -->
-
-        </form>
-
+        <loading2></loading2>
 
         <div align="center">
            <img class="fix_name" src="img/name.png">                    

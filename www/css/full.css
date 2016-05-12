@@ -12,13 +12,36 @@
 }
 
 
-.re_size{
-    width: 240px;
-    height: 240px;
+.re_size_image{
+    width: 100%;
+    height: 25%;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.re_size_logo{
+    position: absolute;
+    top: 55%;
+    left: 69%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+md-card md-card-content {
+    padding: 0 !important;
 }
 
 .angular-google-map-container { 
     height: 1000px; 
+}
+
+.loading_wrapper{
+    width: 100%;
+    height: 100%;
+    background: white;
+    margin: 0 !important;
 }
 
 .white-bg{
@@ -91,7 +114,6 @@ md-tabs .md-tab.md-active{
     left:50%;
     opacity: 0.5;
 }
-
 
 
 

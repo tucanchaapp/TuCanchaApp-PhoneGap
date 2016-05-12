@@ -45,6 +45,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
               json_field ["city"]    = venue.get('City')
               json_field ["logo"]    = venue.get('mediaId').get('logo')._url
+              json_field ["image"]    = venue.get('mediaId').get('image')._url
               json_field ["name"] = venue.get('Name')                                        
               json_field ["phone"]      = venue.get('Phone')
               json_field ["address"]      = venue.get('Address')
@@ -83,12 +84,20 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                 $scope.resultIsHidden = true;
               }
 
+              else if($scope.data.dateDropDownInput.getTime() < moment() ){
+                alert ('Necesitas la máquina del tiempo para llegar a jugar a esa hora, intenra una fecha posterior.');
+                $scope.isHidden = false;
+                $scope.loading = false;
+                $scope.resultIsHidden = true;
+              }
+
               else{
 
 
 
                 reservationFactory.getReservations($scope.data.dateDropDownInput.getTime()).then(function(reservations){
-
+                            // console.log('HORA DE BUSQUEDA= '+ $scope.data.dateDropDownInput.getTime());
+                            // console.log('HORA ACTUAL= '+ moment());
                             var reservationsIds = []
                             for (var i = 0; i < reservations.length; i++) {
                                 reservationsIds.push(reservations[i].get('fieldId').id)                                

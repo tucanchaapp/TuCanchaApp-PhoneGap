@@ -4,44 +4,48 @@
                         
             <!-- Begin | Register Form -->
             <div ng-controller="setUpAccountController" id="register-form">
-                <form ng-submit="signUp()">
+                <div class="form_wrapper" ng-hide="isHiddenRegister">
+                    <form ng-submit="signUp()">
 
-                    <div id="div-register-msg">
+                        <div id="div-register-msg">
 
-                        <h2 id="text-register-msg"> 
-                            <md-icon class="material-icons">assignment turned in</md-icon> Regístrate!
-                        </h2>
-                        <br>
-                        <br>
-                    </div>
+                            <h2 id="text-register-msg"> 
+                                <md-icon class="material-icons">assignment turned in</md-icon> Regístrate!
+                            </h2>
+                            <br>
+                            <br>
+                        </div>
 
-                    <md-input-container class="md-block">
-                        <!-- Use floating placeholder instead of label -->
-                        <md-icon class="material-icons">mood</md-icon>
-                        <input ng-model="register_name" id="register_name" type="text" placeholder="Nombre" ng-required="true" autocomplete="off">
-                    </md-input-container>
-                    
-                    <md-input-container class="md-block">
-                        <!-- Use floating placeholder instead of label -->
-                        <md-icon class="material-icons">phone</md-icon>
-                        <input ng-model="register_phone" id="register_phone" type="text" placeholder="Célular" ng-required="true" autocomplete="off">
-                    </md-input-container>
-                    
-                    <md-input-container class="md-block">
-                        <!-- Use floating placeholder instead of label -->
-                        <md-icon class="material-icons">email</md-icon>
-                        <input ng-model="register_email" id="register_email" type="email" placeholder="Email" ng-required="true" autocomplete="off">
-                    </md-input-container>
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon class="material-icons">mood</md-icon>
+                            <input ng-model="register_name" id="register_name" type="text" placeholder="Nombre" ng-required="true" autocomplete="off">
+                        </md-input-container>
+                        
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon class="material-icons">phone</md-icon>
+                            <input ng-model="register_phone" id="register_phone" type="text" placeholder="Célular" ng-required="true" autocomplete="off">
+                        </md-input-container>
+                        
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon class="material-icons">email</md-icon>
+                            <input ng-model="register_email" id="register_email" type="email" placeholder="Email" ng-required="true" autocomplete="off">
+                        </md-input-container>
 
-                    <md-input-container class="md-block">
-                        <!-- Use floating placeholder instead of label -->
-                        <md-icon class="material-icons">fingerprint</md-icon>
-                        <input ng-model="register_password" id="register_password" type="password" placeholder="Contraseña" ng-required="true" autocomplete="off">
-                    </md-input-container>
+                        <md-input-container class="md-block">
+                            <!-- Use floating placeholder instead of label -->
+                            <md-icon class="material-icons">fingerprint</md-icon>
+                            <input ng-model="register_password" id="register_password" type="password" placeholder="Contraseña" ng-required="true" autocomplete="off">
+                        </md-input-container>
 
-                    <md-button type="submit" class="md-raised"><span class="ng-scope white">Crear Cuenta</span>
-                    </md-button>
-                </form>
+                        <md-button type="submit" class="md-raised"><span class="ng-scope white">Crear Cuenta</span>
+                        </md-button>
+                    </form>
+                </div>
+                
+                <loading3></loading3>
             </div>
 
 

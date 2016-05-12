@@ -9,6 +9,10 @@
     </author>
     <content src="index.html" />
     <icon src="icon.png" />
+    <icon platform="android" qualifier="ldpi" src="icon.png" />
+    <icon platform="android" qualifier="mdpi" src="icon.png" />
+    <icon platform="android" qualifier="hdpi" src="icon.png" />
+    <icon platform="android" qualifier="xhdpi" src="icon.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
