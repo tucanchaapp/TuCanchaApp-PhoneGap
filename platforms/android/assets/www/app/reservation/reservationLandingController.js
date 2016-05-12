@@ -45,6 +45,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
               json_field ["city"]    = venue.get('City')
               json_field ["logo"]    = venue.get('mediaId').get('logo')._url
+              json_field ["image"]    = venue.get('mediaId').get('image')._url
               json_field ["name"] = venue.get('Name')                                        
               json_field ["phone"]      = venue.get('Phone')
               json_field ["address"]      = venue.get('Address')

@@ -95,7 +95,13 @@
             <md-card ng-repeat="venue in venues track by $index">
                 <md-card-content>
 
-                      <center><img ng-src="{{venue.logo}}" class="md-card-image re_size" alt="{{venue.logo}}"></center>
+                      <div style="position: relative; left: 0; top: 0;">
+
+                        <img ng-src="{{venue.image}}" class="md-card-image re_size_image" alt="{{venue.name}}">
+
+                        <img ng-src="{{venue.logo}}" class="re_size_logo"/>
+                      </div
+
 
 
                       <md-list>

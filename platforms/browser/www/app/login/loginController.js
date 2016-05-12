@@ -1,12 +1,13 @@
 angular.module('tuCanchaApp').controller('loginController',loginController);
 
-loginController.$inject = ['$scope','$location','$rootScope'];
+loginController.$inject = ['$scope','$location','$rootScope', '$http'];
 
 
-function loginController($scope,$location,$rootScope){
+function loginController($scope,$location,$rootScope,$http){
 
+  
   $rootScope.currentUser = Parse.User.current();
-
+  $scope.isHiddenLogIn = false;
   $rootScope.loggedIn = function() {
     if ($rootScope.currentUser === null) {
       return false;
@@ -22,6 +23,7 @@ function loginController($scope,$location,$rootScope){
   }
 
   function loginSuccessful(user) {
+    $scope.loading = false;
     $rootScope.$apply(function() {
       $rootScope.currentUser = Parse.User.current();
       $location.path("/reservationLanding");
@@ -29,7 +31,14 @@ function loginController($scope,$location,$rootScope){
   }
 
   function loginUnsuccessful(user, error) {
+
     alert("Correo o contraseña inválido");
+    $scope.loading = false;
+    $scope.isHiddenLogIn = false;
+    
+    $rootScope.$apply(function() {
+      $location.path("/login");
+    });
     
   }
 
@@ -37,9 +46,11 @@ function loginController($scope,$location,$rootScope){
 
   $scope.logIn = function() {   
     console.log("Trying To LogIn");
+    $scope.isHiddenLogIn = true;
+    $scope.loading = true;
     if ($scope.login_username != undefined  ){
       if($scope.login_password != undefined){
-        var username = $scope.login_username;
+        var username = $scope.login_username.toLowerCase();
         var password = $scope.login_password;
 
         Parse.User.logIn(username, password, {
@@ -48,10 +59,14 @@ function loginController($scope,$location,$rootScope){
         });
       }
       else{
+        $scope.loading = false;
+        $scope.isHiddenLogIn = false;
         alert("Por favor ingrese su contraseña ");
       }
     }
     else{
+      $scope.loading = false;
+      $scope.isHiddenLogIn = false;
       alert("Por favor ingrese su correo");
     }
   };          
