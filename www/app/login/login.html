@@ -19,7 +19,7 @@
                 <md-input-container >
                     <!-- Use floating placeholder instead of label -->
                     <md-icon class="material-icons">fingerprint</md-icon>
-                    <input ng-model="login_password" id="login_password" type="password" autocomplete="off" placeholder="Contraseña" ng-required="true">
+                    <input name="recoveryMail" type="password" autocomplete="off" placeholder="Contraseña" ng-required="true">
                 </md-input-container>
                 
 
@@ -28,6 +28,10 @@
 
                 <md-button ng-click="go('/setUpAccount')" id="login_register_btn">
                     <span class="ng-scope white">Regístrate</span>
+                </md-button>
+
+                <md-button ng-click="go('/passwordRecovery')" id="login_register_btn">
+                    <span class="ng-scope white">¿Olvidaste tu contraseña?</span>
                 </md-button>
             
                 

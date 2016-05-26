@@ -85,7 +85,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               }
 
               else if($scope.data.dateDropDownInput.getTime() < moment() ){
-                alert ('Necesitas la máquina del tiempo para llegar a jugar a esa hora, intenra una fecha posterior.');
+                alert ('Necesitas la máquina del tiempo para llegar a jugar a esa hora, intenta una fecha posterior.');
                 $scope.isHidden = false;
                 $scope.loading = false;
                 $scope.resultIsHidden = true;
@@ -143,10 +143,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
             },function onError(error) {
                     $scope.isHidden = false;
                     if (error.code == 3){
-                        alert("El tiempo de espera ha expirado \n ")
+                        alert("El tiempo de espera ha expirado; asegurate que el GPS de tu dispositivo esté encendido.");
                     }
-                    alert('code: '    + error.code    + '\n' +
-                          'message: ' + error.message + '\n');
             }, {timeout:15000, enableHighAccuracy: true});
                 
         }else{

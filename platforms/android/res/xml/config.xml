@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tuCanchaApp" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tuCanchaApp" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/2.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
@@ -10,15 +10,17 @@
     <description>
         soccer fild reservation app
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="sebasdeldi123@gmail.com" href="http://www.tucanchaapp.com/">
         TuCancha App Team
     </author>
     <content src="index.html" />
     <icon src="icon.png" />
-    <icon platform="android" qualifier="ldpi" src="icon.png" />
-    <icon platform="android" qualifier="mdpi" src="icon.png" />
-    <icon platform="android" qualifier="hdpi" src="icon.png" />
-    <icon platform="android" qualifier="xhdpi" src="icon.png" />
+    <icon platform="android" qualifier="ldpi" src="icon_ldpi.png" />
+    <icon platform="android" qualifier="mdpi" src="icon_mdpi.png" />
+    <icon platform="android" qualifier="hdpi" src="icon_hdpi.png" />
+    <icon platform="android" qualifier="xhdpi" src="icon_xhdpi.png" />
+    <icon platform="android" qualifier="xxhdpi" src="icon_xxhdpi.png" />
+    <icon platform="android" qualifier="xxxhdpi" src="icon_xxxhdpi.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

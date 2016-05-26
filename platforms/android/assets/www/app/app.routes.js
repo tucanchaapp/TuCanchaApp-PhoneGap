@@ -24,6 +24,13 @@ angular.module('tuCanchaApp').config(function($routeProvider) {
             templateUrl : 'app/login/login.html',
             controller: 'loginController'     
         })
+
+
+        .when('/passwordRecovery', {
+            templateUrl : 'app/passwordRecovery/passwordRecovery.html',
+            controller: 'passwordRecoveryController'     
+        })
+        
     
         .when('/reservationLanding', {
             templateUrl : 'app/reservation/reservationLanding.html',
