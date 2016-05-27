@@ -33,9 +33,40 @@ md-card md-card-content {
     padding: 0 !important;
 }
 
-.angular-google-map-container { 
-    height: 1000px; 
+@media screen and ( max-height: 550px ){
+    .angular-google-map-container { 
+        height: 390px; 
+    }
 }
+
+@media screen and ( min-height: 600px ){
+    .angular-google-map-container { 
+        height: 520px; 
+    }
+}
+
+
+
+@media screen and ( min-height: 730px ){
+    .angular-google-map-container { 
+        height: 610px; 
+    }
+}
+
+@media screen and ( min-height: 960px ){
+    .angular-google-map-container { 
+        height: 880px; 
+    }
+}
+
+
+@media screen and ( min-height: 1250px ){
+    .angular-google-map-container { 
+        height: 1130px; 
+    }
+}
+
+
 
 .loading_wrapper{
     width: 100%;

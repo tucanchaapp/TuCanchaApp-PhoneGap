@@ -9,6 +9,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     $scope.user_name = currentUser.get("name"); 
     $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
 
+          
+
     
 
 
@@ -53,6 +55,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               json_field ["close"]      = venue.get('close')
               json_field ["fieldsNum"]      = venue.get('Fields')
               json_field ["coords"]      = venue.get('Location')
+              json_field ["access"]      = venue.get('Access')
 
               json_fields.push(json_field);
         }
