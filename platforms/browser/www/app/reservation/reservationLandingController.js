@@ -9,9 +9,32 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     $scope.user_name = currentUser.get("name"); 
     $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
 
-          
 
-    
+
+
+
+    $scope.marker = {options: {
+
+        icon: '/img/mker.png'
+      }
+    };
+
+  
+
+    $scope.isRowDisabled = function(item) {
+      // Return true to apply 'off' class
+      console.warn(item.access);
+      return !validateField(item);
+    };
+      
+      
+    function validateField(item) {
+      // Return true if item is clickable
+      var r = item.access === 'TuCancha';
+      console.log('validateField: ' + r);
+      return r;
+    }
+
 
 
 
@@ -34,16 +57,37 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
 
     $scope.data = { active: false };
-    
+
+
+    // function selectMarkerIcon (venue){
+    //   if (venue.get('Access') === 'TuCancha') {
+    //     return '/img/mker.png';
+    //   }
+
+    //   return '/img/mker_off.png';
+
+    // }
 
     $scope.VenuesInfo = function (){
 
       reservationFactory.getVenues().then(function(venues){
         json_fields = [];
 
+
+
+
         for (var i = 0; i < venues.length; i++) {
+
+
+
             var venue = venues[i];
               var json_field = {}
+
+
+          
+
+
+
 
               json_field ["city"]    = venue.get('City')
               json_field ["logo"]    = venue.get('mediaId').get('logo')._url
@@ -56,15 +100,18 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               json_field ["fieldsNum"]      = venue.get('Fields')
               json_field ["coords"]      = venue.get('Location')
               json_field ["access"]      = venue.get('Access')
+              // json_field ["marker_url"] = selectMarkerIcon (venue);
 
               json_fields.push(json_field);
+
+              console.log('aaaaa' + venue.marker_url);
         }
         $scope.venues=json_fields
         console.log($scope.venues);
+
       })
 
     }
-
 
 
 
@@ -75,7 +122,11 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
         $scope.loading = true;
         $scope.isHidden = true;
         $scope.resultIsHidden = false;
+ 
         $scope.fields = [];
+
+        
+
         if($scope.data != undefined){
             
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -117,22 +168,28 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                                    
                                                           
                                     var fieldDistance = distance(position.coords.latitude, position.coords.longitude, fieldGeoPoint.latitude, fieldGeoPoint.longitude, "K");
+
+                                    // var hasAccess = field.get('venueId').get('Access');
+                                    // console.log(hasAccess);
                                     
-                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 100){
+                                    if($.inArray(field.id,reservationsIds) < 0 && fieldDistance <= 161){
                                         var json_field = {}
 
                                         json_field ["name"]    = field.get('name')   
-                                        json_field ["company"] = field.get('venueId').get('Name')                                        
+                                        json_field ["company"] = field.get('venueId').get('Name') 
+                                        json_field ["access"] = field.get('venueId').get('Access')                                       
                                         json_field ["id"]      = field.id
                                         json_field ["type"]      = field.get('type')
 
                                         json_fields.push(json_field);
                                     }
 
-                                }
 
+                                }
+                                console.log('numero de fields = ' + json_fields.length);
                                 $scope.fields=json_fields;
                                 $scope.loading = false;
+
 
                             })         
 
@@ -201,8 +258,15 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
     
     $scope.makeAReservation = function (field) {
         console.log('Make reservation triggered');
+
+
+        // if (validateItem(field)) {
+          
+        // }
+
         
-        if (confirm('Esta seguro que quiere reservar la ' + field.name + ' en ' + field.company + ' para la fecha '+moment($scope.data.dateDropDownInput.getTime()).format('MMMM Do YYYY, h:mm a')+' ?')) { 
+
+        if ((validateField(field)) && (confirm('¿ Está seguro que quiere reservar la ' + field.name + ' en ' + field.company + ' para la fecha '+moment($scope.data.dateDropDownInput.getTime()).format('MMMM Do YYYY, h:mm a')+' ?'))) { 
 
             var Reservation = Parse.Object.extend("Reservation");
             var reservation = new Reservation();
@@ -223,7 +287,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               },
               error: function(reservation, error) {
 
-                alert('Failed to create new object, with error code: ' + error.message);
+                alert('Imposible crear reserva: ' + error.message);
               }
             });
             
