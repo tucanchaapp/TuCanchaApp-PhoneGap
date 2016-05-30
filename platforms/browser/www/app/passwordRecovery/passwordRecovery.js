@@ -16,7 +16,7 @@ function loginController($scope,$http){
     	Parse.User.requestPasswordReset($scope.recovery_mail, {
     	  success: function() {
     	  // Password reset request was sent successfully
-    	  	alert('Te hemos enviado un Mail a ' + $scope.recovery_mail + ' , para que cambies tu contaseña.');
+    	  	alert('Te hemos enviado un Mail a ' + $scope.recovery_mail + ' para que cambies tu contaseña.');
     	  },
     	  error: function(error) {
     	    // Show the error message somewhere

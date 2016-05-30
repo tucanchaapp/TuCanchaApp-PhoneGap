@@ -8,7 +8,7 @@
             <!--MAP RELATED STUFF  -->
             <ui-gmap-google-map center='map.center' zoom='map.zoom' >
 
-              <ui-gmap-marker ng-repeat="venue in venues track by $index" idKey='$index' coords='venue.coords' icon="marker.png"> 
+              <ui-gmap-marker ng-repeat="venue in venues track by $index" idKey='$index' coords='venue.coords' options="marker.options"> 
                 <ui-gmap-window isIconVisibleOnClick="true" show="true">
                     <div>{{venue.name}}</div>
                 </ui-gmap-window>
@@ -62,7 +62,7 @@
 
             <div class="results_fields_wrapper" ng-hide="resultIsHidden">
 
-                <table class="table table-striped" >
+                <table class="table " >
                   <tr>
                     
                       <th><center>Local</center></th>
@@ -70,16 +70,18 @@
                       <th><center>Tipo</center></th>
                     
                   </tr>
-                    <tr ng-repeat="field in fields track by $index" >
-                      
-                        <td ng-click="makeAReservation(field)" title="'Cancha'"  ><i class="fa fa-futbol-o" aria-hidden="true"></i>
-                            {{field.company}}</td>
-                        <td ng-click="makeAReservation(field)" title="'Número'"  >
-                            <center>{{field.name}}</center></td>
-                        <td ng-click="makeAReservation(field)" title="'Tipo'"  >
-                            <center>{{field.type}}</center></td>
-                      
-                    </tr>
+
+                  <tr ng-repeat="field in fields " ng-class="{ 'off': isRowDisabled(field) }" ng-click="makeAReservation(field)">
+                  
+                    <td  title="'Cancha'"  ><i class="fa fa-futbol-o" aria-hidden="true"></i>
+                        {{field.company}}</td>
+                    <td  title="'Número'"  >
+                        <center>{{field.name}}</center></td>
+                    <td  title="'Tipo'"  >
+                        <center>{{field.type}}</center></td>
+              
+                    
+                  </tr>
                 </table>
 
 
