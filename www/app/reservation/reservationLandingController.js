@@ -7,17 +7,17 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
     var currentUser = Parse.User.current();
     $scope.user_name = currentUser.get("name"); 
-    $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482387 }, zoom: 6 };
+    $scope.map = { center: { latitude: 4.6482836, longitude: -74.2482396 }, zoom: 6 };
 
 
 
 
 
-    $scope.marker = {options: {
+    // $scope.marker = {options: {
 
-        icon: '/img/mker.png'
-      }
-    };
+    //     icon: '/img/mker.png'
+    //   }
+    // };
 
   
 
@@ -112,6 +112,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
       })
 
     }
+
+
 
 
 
@@ -244,6 +246,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
               json_field ["fieldId"]  = reservation.get('fieldId')
               json_field ["fieldName"]  = reservation.get('fieldId').get('name')
               json_field ["venueName"]  = reservation.get('fieldId').get('venueId').get('Name')
+              json_field ["reservationId"]  = reservation.id
 
               json_fields.push(json_field);
         }
@@ -252,6 +255,29 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
       })
 
     }
+
+    $scope.cancelReservation = function(objId){
+      console.log('cancel reservation triggered');
+      console.log(objId);
+
+      if (confirm('¿ Está seguro que quiere cancelar la reserva ? ')) {
+        var Reservation = Parse.Object.extend("Reservation");
+
+        var query = new Parse.Query(Reservation);
+        query.equalTo("objectId", objId);
+
+        query.first({
+            success: function (reservation) {
+              // alert("Successfully retrieved " + reservation.length + " scores.");
+              reservation.set("userCancelled", true);
+              reservation.save();
+              console.log('canceladoooo');
+              // location.reload();
+            }
+        });
+      }
+    }
+
 
 
     
@@ -266,10 +292,12 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
         
 
-        if ((validateField(field)) && (confirm('¿ Está seguro que quiere reservar la ' + field.name + ' en ' + field.company + ' para la fecha '+moment($scope.data.dateDropDownInput.getTime()).format('MMMM Do YYYY, h:mm a')+' ?'))) { 
+        if ((validateField(field)) && (confirm('¿ Está seguro que quiere reservar la cancha ' + field.name + ' en ' + field.company + ' para la fecha '+moment($scope.data.dateDropDownInput.getTime()).format('MMMM Do YYYY, h:mm a')+' ?'))) { 
 
             var Reservation = Parse.Object.extend("Reservation");
             var reservation = new Reservation();
+            $scope.resultIsHidden = true;
+            $scope.isHidden = false;
 
             reservation.set("date", $scope.data.dateDropDownInput.getTime());
             
@@ -279,6 +307,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
             reservation.set("fieldId", fieldParseObject);            
             
             reservation.set("playerId", Parse.User.current());
+
+            reservation.set("origin", "Android");
             
             
             reservation.save(null, {
@@ -290,6 +320,8 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
                 alert('Imposible crear reserva: ' + error.message);
               }
             });
+
+            // location.reload();
             
         }
                 

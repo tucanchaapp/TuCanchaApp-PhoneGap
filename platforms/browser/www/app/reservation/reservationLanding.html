@@ -8,7 +8,7 @@
             <!--MAP RELATED STUFF  -->
             <ui-gmap-google-map center='map.center' zoom='map.zoom' >
 
-              <ui-gmap-marker ng-repeat="venue in venues track by $index" idKey='$index' coords='venue.coords' options="marker.options"> 
+              <ui-gmap-marker ng-repeat="venue in venues track by $index" idKey='$index' coords='venue.coords' > 
                 <ui-gmap-window isIconVisibleOnClick="true" show="true">
                     <div>{{venue.name}}</div>
                 </ui-gmap-window>
@@ -195,7 +195,7 @@
   
               
             </tr>
-              <tr ng-repeat="reservation in reservations track by $index" >
+              <tr ng-repeat="reservation in reservations track by $index" data-ng-click="cancelReservation(reservation.reservationId)" >
 
 
                   <td ><i class="fa fa-futbol-o" aria-hidden="true"></i>
