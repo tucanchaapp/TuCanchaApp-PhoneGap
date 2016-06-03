@@ -250,7 +250,7 @@ function reservationLandingController($scope,reservationFactory,$location,$rootS
 
               json_fields.push(json_field);
         }
-        $scope.reservations=json_fields
+        $scope.reservations=json_fields.reverse();
         console.log($scope.venues);
       })
 

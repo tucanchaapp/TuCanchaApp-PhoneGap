@@ -91,6 +91,8 @@ function reservationFactory($q) {
             var currentUserId = Parse.User.current(); 
             query.equalTo('playerId', currentUserId);
             query.include("fieldId").include("venueId");
+            query.notEqualTo('userCancelled', true);
+            query.notEqualTo('venueCancelled', true);
             query.limit(1000);
 
                            
