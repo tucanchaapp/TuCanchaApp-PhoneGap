@@ -182,10 +182,10 @@ function default_versionCode(version) {
     var nums = version.split('-')[0].split('.');
     var versionCode = 0;
     if (+nums[0]) {
-        versionCode += +nums[0] * 10000;
+        versionCode += +nums[0] * 10001;
     }
     if (+nums[1]) {
-        versionCode += +nums[1] * 100;
+        versionCode += +nums[1] * 101;
     }
     if (+nums[2]) {
         versionCode += +nums[2];
